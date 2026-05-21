@@ -1,0 +1,125 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORPO DA PÁGINA */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    /* FUNDO QUE COMBINA COM O ROXO PASTEL (Cinza azulado bem suave e limpo) */
+    background: linear-gradient(to right, #f0eff4, #e5e3ec);
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER DE CADASTRO COM LARGURA MÁXIMA EXPANDIDA */
+.cadastro-container {
+    /* Fundo off-white com um toque quase imperceptível de roxo */
+    background-color: #fdfcff;
+    width: 100%;
+    max-width: 600px; /* LARGURA AUMENTADA: De 520px para 600px para total conforto visual */
+    padding: 50px 55px; /* Aumentado o respiro nas laterais internas */
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0px 15px 45px rgba(110, 89, 165, 0.09);
+    /* Borda superior em Roxo Pastel Marcante */
+    border-top: 6px solid #8e7cc3;
+}
+
+/* TÍTULO PRINCIPAL */
+.cadastro-container h1{
+    color: #4a3b6e;
+    font-size: 36px; /* Ajustado proporcionalmente à nova largura */
+    margin-bottom: 6px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    white-space: normal;
+}
+
+/* SUBTÍTULO SANT'ANA */
+.santana{
+    color: #716199;
+    font-size: 16px;
+    margin-bottom: 35px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* IMAGEM COM O DETALHE E BORDA DO LOGIN */
+.cadastro-container img{
+    width: 145px;
+    height: 145px;
+    object-fit: cover;
+    margin-bottom: 40px;
+    border-radius: 50%;
+    border: 4px solid #b4a7d6;
+    padding: 5px;
+    background-color: #fdfcff;
+}
+
+/* LABEL */
+label{
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #433e52;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* INPUTS E SELECTS MAIS LARGOS */
+input, select{
+    width: 100%;
+    padding: 16px 18px; /* Mais espaço interno para digitação fluida */
+    margin-bottom: 28px; /* Ótimo distanciamento entre blocos de campos */
+    border: 1px solid #d0cbdc;
+    border-radius: 14px;
+    outline: none;
+    background-color: #faf9fc;
+    font-size: 16px; 
+    color: #433e52;
+    transition: 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Setinha customizada para os campos Select */
+select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23716199' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px;
+    cursor: pointer;
+}
+
+/* EFEITO INPUT E SELECT AO FOCAR */
+input:focus, select:focus{
+    border-color: #8e7cc3;
+    box-shadow: 0 0 12px rgba(142, 124, 195, 0.25);
+}
+
+/* BOTÃO CADASTRAR */
+button{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background-color: #8e7cc3;
+    color: white;
+    font-size: 20px; /* Botão marcante acompanhando o tamanho da caixa */
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+/* HOVER BOTÃO */
+button:hover{
+    background-color: #7664ad;
+    transform: scale(1.01); /* Leve ajuste de escala para manter a estabilidade em botões largos */
+}

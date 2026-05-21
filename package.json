@@ -1,0 +1,15 @@
+{
+  "name": "syst_igreja",
+  "version": "1.0.0",
+  "description": "Um sistema em WEB, focado em controle de usuário, fluxos, relatórios e patrimônio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

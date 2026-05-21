@@ -1,0 +1,129 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORPO DA PÁGINA */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    /* FUNDO QUE COMBINA COM O ROXO PASTEL (Cinza azulado bem suave e limpo) */
+    background: linear-gradient(to right, #f0eff4, #e5e3ec);
+    min-height: 100vh; /* Alterado de height para min-height para melhor adaptação */
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER LOGIN EXPANDIDO */
+.login-container{
+    /* Fundo off-white com um toque quase imperceptível de roxo */
+    background-color: #fdfcff;
+    width: 100%;
+    max-width: 600px; /* AUMENTADO: De 430px para 600px, igualando à tela de cadastro */
+    padding: 50px 55px; /* AUMENTADO: Mais espaço interno lateral e vertical para o usuário */
+    border-radius: 28px; /* Bordas ligeiramente mais suaves acompanhando o novo tamanho */
+    text-align: center;
+    box-shadow: 0px 15px 45px rgba(110, 89, 165, 0.09);
+    /* Borda superior em Roxo Pastel Marcante */
+    border-top: 6px solid #8e7cc3;
+}
+
+/* TÍTULO PRINCIPAL */
+.login-container h1{
+    /* Roxo escuro para dar leitura e elegância */
+    color: #4a3b6e;
+    font-size: 36px; /* Ajustado proporcionalmente à nova largura */
+    margin-bottom: 6px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* Permitindo quebra de linha suave se a tela for muito pequena */
+    white-space: normal;
+}
+
+/* TEXTO SANT'ANA */
+.santana{
+    /* Roxo médio suave para o subtítulo */
+    color: #716199;
+    font-size: 16px;
+    margin-bottom: 35px; /* Mais espaço abaixo do subtítulo */
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* IMAGEM */
+.login-container img{
+    width: 145px; /* Levemente maior para equilibrar com o tamanho do container */
+    height: 145px;
+    object-fit: cover;
+    margin-bottom: 40px; /* Mais espaçamento abaixo da foto */
+    border-radius: 50%;
+    /* Borda da foto em roxo pastel */
+    border: 4px solid #b4a7d6;
+    padding: 5px;
+    background-color: #fdfcff;
+}
+
+/* LOGIN (Título H2) */
+.login-container h2{
+    color: #4a3b6e;
+    font-size: 30px; /* Ligeiramente maior para destacar bem */
+    margin-bottom: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* LABEL */
+label{
+    display: block;
+    text-align: left;
+    margin-bottom: 10px; /* Mais respiro entre a label e o input */
+    /* Cinza escuro azulado para neutralizar as labels */
+    color: #433e52;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* INPUTS MAIS AMPLOS */
+input{
+    width: 100%;
+    padding: 16px 18px; /* AUMENTADO: De 14px para um preenchimento mais confortável */
+    margin-bottom: 28px; /* AUMENTADO: De 22px para 28px para melhor distanciamento dos blocos */
+    /* Borda suave acinzentada */
+    border: 1px solid #d0cbdc;
+    border-radius: 14px; /* Bordas mais arredondadas combinando com o container */
+    outline: none;
+    background-color: #faf9fc;
+    font-size: 16px; /* Texto interno do input maior e mais legível */
+    transition: 0.3s;
+}
+
+/* EFEITO INPUT */
+input:focus{
+    /* Foco do input em roxo pastel */
+    border-color: #8e7cc3;
+    box-shadow: 0 0 12px rgba(142, 124, 195, 0.25);
+}
+
+/* BOTÃO ENTRAR */
+button{
+    width: 100%;
+    padding: 16px; /* Aumentado acompanhando o tamanho dos inputs */
+    border: none;
+    border-radius: 14px;
+    /* Botão Roxo Pastel Principal */
+    background-color: #8e7cc3;
+    color: white;
+    font-size: 20px; /* Texto do botão mais destacado e imponente */
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+/* HOVER BOTÃO */
+button:hover{
+    /* Tom de roxo ligeiramente mais sóbrio ao passar o mouse */
+    background-color: #7664ad;
+    transform: scale(1.01); /* Ajuste sutil na escala para botões largos */
+}
