@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cadastro de Agentes </title>
+    <link rel="stylesheet" href="/src/public/style/cadastroUsua.css">
+    <script src="/src/public/src/agente_fiel/agente_cad.js" defer></script>
+
+</head>
+<body>
+
+    <div class="cadastro-container">  
+        <h1> Cadastro de Agentes </h1>
+        <p class="santana">Paróquia de Sant'Ana</p>
+        
+        <img src="/src/view/img_santana.jpg" alt="Logo da Paróquia de Sant´Ana">
+        <div class="cadastro">
+            <form action="/src/public/src/agente_fiel/agente_cad.js" method="POST" id="cadastroForm">
+                <div class="form-group">
+                    <label for="username">Nome de usuário:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="genero">Gênero:</label>
+                    <select name="genero" id="genero"> 
+                        <option value=""> Selecione o gênero </option>
+                        <option value="mas"> Masculino </option>
+                        <option value="fem"> Feminino </option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm">Confirmar Senha:</label>
+                    <input type="password" id="password_confirm" name="password_confirm">
+                </div>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login Syst_igreja </title>
+    <link rel="stylesheet" href="/src/public/style/login.css">
+    <script src="/src/public/src/administrador_script/login.js" defer></script>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1> Paroquia de Sant´Ana </h1>
+        <img src="/src/public/assets/img_santana.jpg" alt="Logo da Paróquia de Sant´Ana" width="200">
+        <h1> Login </h1>
+        <form action="/src/public/src/administrador_script/login.js" method="POST" id="loginForm">
+            <div>
+                <label for="userEmail">E-mail:</label>
+                <input type="email" id="userEmail" name="username">
+            </div> 
+            <br>
+            <div>       
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <br>
+            <p>Não tem uma conta? <a href="/src/public/html/agente_fiel/agente_cad.html">Cadastre-se aqui</a></p>
+            <button type="submit">Entrar</button>   
+        </form>
+</div>
+</body>
+</html>

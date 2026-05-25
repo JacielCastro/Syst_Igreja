@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cadastro de Agentes </title>
+    <link rel="stylesheet" href="/src/public/style/cadastroUsua.css">
+    <script src="/src/public/src/administrador_script/dados_cadastro.js" defer></script>
+
+</head>
+<body>
+
+    <div class="cadastro-container">  
+        <h1> Cadastro de Agentes </h1>
+        <p class="santana">Paróquia de Sant'Ana</p>
+        
+        <img src="/src/public/assets/img_santana.jpg" alt="Logo da Paróquia de Sant´Ana">
+        <div class="cadastro">
+            <form action="/src/public/src/administrador_script/dados_cadastro.js" method="POST" id="cadastroForm">
+                <div class="form-group">
+                    <label for="username">Nome de usuário:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="genero">Gênero:</label>
+                    <select name="genero" id="genero"> 
+                        <option value=""> Selecione o gênero </option>
+                        <option value="mas"> Masculino </option>
+                        <option value="fem"> Feminino </option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <label for="pastoral">Pastoral:</label>
+                    <select name="pastoral" id="pastoral">
+                        <option value="">Selecione uma pastoral</option>
+                        <option value="pastoral1">Pastoral Família</option>
+                        <option value="pastoral2">Pascom</option>
+                        <option value="pastoral3">Liturgia</option>
+                        <option value="pastoral4">Pastoral da Criança</option>
+                        <option value="pastoral5">Pastoral do povo de rua</option>
+                        <option value="pastoral6">Pastoral do Dízimo</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="nivel_acesso">Nível de Acesso:</label>
+                    <select name="nivel_acesso" id="nivel_acesso">
+                        <option value="">Selecione o nível de acesso</option>
+                        <option value="admin">Coordenador</option>
+                        <option value="user">Vice-coordenador</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm">Confirmar Senha:</label>
+                    <input type="password" id="password_confirm" name="password_confirm">
+                </div>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+    </div>
+    </div>
+
+</body>
+</html>
