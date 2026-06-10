@@ -13,7 +13,7 @@ const HOST = process.env.EXPRESS_HOST || 'localhost'
 await sincronizarBD()
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('public/administrador/login.html'))
+    res.sendFile(path.resolve('./src/public/html/administrador/login.html'))
 })
 
 // 3. Inicialização e escuta do Servidor
