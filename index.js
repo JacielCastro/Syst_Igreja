@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
-import { sincronizarBD } from './src/database/database.js' // 🌟 Corrigido para a pasta database!
-import app from './src/config/express_config.js'           // 🌟 Corrigido o nome com um "s" apenas
+import { sincronizarBD } from './src/database/database.js' 
+import app from './src/config/express_config.js'           
 
 // 1. Carrega as variáveis de ambiente primeiro de tudo
 dotenv.config()

@@ -20,7 +20,7 @@
     "op": "^0.0.6",
     "path": "^0.12.7",
     "sequelize": "^6.37.8",
-    "sqlite3": "^6.0.1"
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
