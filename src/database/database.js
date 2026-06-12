@@ -5,18 +5,19 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// Corrige o __dirname no ESModule
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Configuração do banco SQLite
-/*const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: path.join(__dirname, '..', 'database.sqlite'),
-    logging: false
+let sequelize
+
+if (process.env.DATA_NODE === 'dev') {
+    sequelize = new Sequelize({
+        dialect: 'sqlite',
+        storage: path.join(__dirname, '..', 'database.sqlite'),
+        logging: false
 })
-*/
-const sequelize = new Sequelize(
+} else {
+    sequelize = new Sequelize(
     process.env.DATABASE_URL,
 
     {
@@ -29,8 +30,34 @@ const sequelize = new Sequelize(
     },
     logging: false
     }
-
 )
+}
+
+// Corrige o __dirname no ESModule
+
+
+// Configuração do banco SQLite
+/*const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: path.join(__dirname, '..', 'database.sqlite'),
+    logging: false
+})
+*/
+// const sequelize = new Sequelize(
+//     process.env.DATABASE_URL,
+
+//     {
+//     dialect : 'postgres',
+//     dialectOptions: {
+//         ssl:{
+//             require: true,
+//             rejectUnauthorized: false
+//         }
+//     },
+//     logging: false
+//     }
+
+// )
 // Função para sincronizar o banco
 export async function sincronizarBD() {
     try {
@@ -45,4 +72,8 @@ export async function sincronizarBD() {
 }
 
 // Exportação padrão
+
+// console.log(sequelize);
+
+
 export default sequelize

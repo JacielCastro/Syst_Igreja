@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from '../database/database.js'; // Puxa a configuração que criamos acima
 
+
 const administrador = sequelize.define('administrador', {
     // O Sequelize cria o 'id' automaticamente
     nome: {
