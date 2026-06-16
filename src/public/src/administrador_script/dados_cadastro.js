@@ -19,21 +19,39 @@ if(senha !== confirSenha ){
     alert(' Senhas não conferem, por favor verifique e tente novamente.')
     return;
 }
-
-alert('Cadastro realizado com sucesso!');
-
 const novoUsuario = {
-    nome: nome,
-    telefone: telefone,
-    email: email,
-    genero: genero,
-    pastoral: pastoral,
-    nivelAcesso: nivelAcesso,
-    senha: senha
+    nome,
+    telefone,
+    email,
+    genero,
+    pastoral,
+    nivelAcesso,
+    senha
+};
+
+try {
+
+    const resposta = await fetch('http://localhost:3000/cadastro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(novoUsuario)
+    });
+
+    const dados = await resposta.json();
+
+    if (resposta.ok) {
+        alert('Cadastro realizado com sucesso!');
+        console.log(dados);
+    } else {
+        alert(dados.mensagem);
+    }
+
+} catch (error) {
+
+    console.error(error);
+    alert('Erro ao conectar com o servidor.');
+
 }
-
-// Transforma o objeto em um texto organizado e legível
-const textoDoObjeto = JSON.stringify(novoUsuario, null, 2);
-
-console.log("Dados do Agente:", novoUsuario);
-})
+});
