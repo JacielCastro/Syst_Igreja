@@ -1,7 +1,9 @@
 import dotenv from 'dotenv'
 import { sincronizarBD } from './src/database/database.js' 
 import app from './src/config/express_config.js'   
-import path from 'path'        
+import path from 'path'   
+import {cadastrarAdm} from './src/controllers/controllers_adm.js'
+
 
 // 1. Carrega as variáveis de ambiente primeiro de tudo
 dotenv.config()
@@ -17,8 +19,11 @@ if (process.env.MODE_NODE === 'dev') {
     HOST = 'localhost'
 }
 
+cadastrarAdm()
+
 // 2. Sincroniza o Banco de Dados SQLite
 await sincronizarBD()
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve('./src/public/html/administrador/login.html'))

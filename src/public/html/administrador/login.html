@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Login Syst_igreja </title>
-    <link rel="stylesheet" href="/src/public/style/login.css">
-    <script src="/src/public/src/administrador_script/login.js" defer></script>
+    <link rel="stylesheet" href="/style/login.css">
+    <!-- <script src="/src/public/src/administrador_script/login.js" defer></script> -->
 </head>
 
 <body>
@@ -13,7 +13,7 @@
         <h1> Paroquia de Sant´Ana </h1>
         <img src="/src/public/assets/img_santana.jpg" alt="Logo da Paróquia de Sant´Ana" width="200">
         <h1> Login </h1>
-        <form action="" method="POST" id="loginForm">
+        <form action="/usuario/login" method="POST" id="loginForm">
             <div>
                 <label for="userEmail">E-mail:</label>
                 <input type="email" id="userEmail" name="username">
@@ -27,7 +27,7 @@
             </div> 
         </form>
             
-            <p>Não tem uma conta? <a href="/src/public/html/administrador/cadastro_usuario.html">Cadastre-se aqui</a></p>
+            <p>Não tem uma conta? <a href="/cadastro">Cadastre-se aqui</a></p>
        </div>
 
 </body>
