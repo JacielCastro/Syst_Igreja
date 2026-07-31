@@ -2,31 +2,29 @@
 import administrador from '../model/model_adm.js';
 
 // --- 1. FUNÇÃO DE CADASTRO (CREATE) ---
-export const cadastrarUsuario = async (req, res) => {
+export const cadastrarAdm = async () => {
     try {
-        console.log('BODY:', req.body);
+        const email = 'jaciel100@gmail.com';
         
-        // Desestruturação: pegamos os dados enviados pelo formulário do Frontend
-        const { nome, email, telefone, genero, pastoral, nivelAcesso, senha } = req.body;
-
-        // Buscamos no banco se já existe algum administrador com o e-mail digitado
-        const usuarioExiste = await administrador.findOne({ where: { email } });
-        if (usuarioExiste) {
-            // Se existir, devolvemos o status 400 (Erro do cliente) e uma mensagem
-            return res.status(400).json({ erro: 'Este e-mail já está cadastrado!' });
+        // Verifica se já existe antes de tentar criar
+        const existe = await administrador.findOne({ where: { email } });
+        
+        if (!existe) {
+            await administrador.create({
+                nome: 'jaciel', 
+                email: email, 
+                telefone: '84987827266', 
+                genero: 'masculino', 
+                pastoral: 'pastoral pascom',     
+                nivelAcesso: 'coordenador', 
+                senha: '123456'
+            });
+            console.log('✅ Administrador padrão criado com sucesso no banco!');
+        } else {
+            console.log('ℹ️ Administrador padrão já existe no banco.');
         }
-
-        // Se o e-mail for inédito, usamos o .create() do Sequelize para salvar no SQLite
-        const novoAdministrador = await administrador.create({
-            nome, email, telefone, genero, pastoral, nivelAcesso, senha
-        });
-
-        // Devolvemos o status 201 (Criado com sucesso) junto com o ID gerado pelo banco
-        return res.status(201).json({ mensagem: 'Administrador cadastrado com sucesso!', id: novoAdministrador.id });
     } catch (error) {
-        // Exibe o erro detalhado no terminal caso aconteça alguma falha catastrófica
-        console.error(error);
-        return res.status(500).json({ erro: 'Erro interno ao salvar o administrador.' });
+        console.error('❌ Erro ao verificar/cadastrar adm inicial:', error);
     }
 };
 
@@ -118,7 +116,7 @@ export const deletarUsuario = async (req, res) => {
         return res.status(500).json({ erro: 'Erro ao deletar o usuario.' });
     }
 };
-
+// --- FUNÇÃO DE CADASTRO DE ADMINISTRADOR FIXO (APENAS PARA TESTE) ---
 export const cadastrarAdm = async (req, res) => {
     try {
         

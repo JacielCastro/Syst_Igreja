@@ -15,17 +15,17 @@ const router = express.Router();
 // Rota de Cadastro: Quando houver um POST na URL /usuario, executa a função cadastrarUsuario
 router.post('/usuario', cadastrarUsuario);
 
-// Rota de Login: Quando houver um POST na URL /usuario/login, executa o loginUsuario
-router.post('/usuario/login', loginUsuario);
+// Rota de Login: Quando houver um POST na URL /login, executa o loginUsuario
+router.post('/login', loginUsuario);
 
-// Rota de Listagem: Um método GET na URL /usuarios traz todos os cadastros
-router.get('/usuarios', listarUsuarios);
+// Rota de Listagem: Um método GET na URL /administradores traz todos os cadastros
+router.get('/adm', listarUsuarios);
 
 // Rota de Atualização: O ':id' indica que a URL precisa de um número (ex: PUT /usuario/3)
-router.put('/usuario/:id', atualizarUsuario);
+router.put('/adm/:id', atualizarUsuario);
 
 // Rota de Deleção: Um método DELETE enviado para /usuario/:id remove o usuário correspondente
-router.delete('/usuario/:id', deletarUsuario);
+router.delete('/adm/:id', deletarUsuario);
 
 // ROTA DE TESTE 
 router.get('/teste',(req, res) => {

@@ -22,9 +22,6 @@ app.use(express.static(path.resolve('./src/public')))
 app.set('view engine', 'ejs') 
 app.set('views', path.join(__dirname, '../views')) 
 
-// Ativação das Rotas do Projeto
-app.use(routerAdm)
-
 // testando as rotas 
 app.use('/adm', routerAdm)
 

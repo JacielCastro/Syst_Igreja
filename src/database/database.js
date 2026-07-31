@@ -10,70 +10,46 @@ const __dirname = path.dirname(__filename)
 
 let sequelize
 
-if (process.env.DATA_NODE === 'dev') {
-    sequelize = new Sequelize({
-        dialect: 'sqlite',
-        storage: path.join(__dirname, '..', 'database.sqlite'),
-        logging: false
-})
-} else {
-    sequelize = new Sequelize(
-    process.env.DATABASE_URL,
+// Usando a variável padrão NODE_ENV ou mantendo fallback para desenvolvimento
+const isDev = process.env.NODE_ENV === 'development' || process.env.DATA_NODE === 'dev'
 
-    {
-    dialect : 'postgres',
-    dialectOptions: {
-        ssl:{
-            require: true,
-            rejectUnauthorized: false
-        }
-    },
-    logging: false
-    }
-)
-}
-
-// Corrige o __dirname no ESModule
-
-
-// Configuração do banco SQLite
-/*const sequelize = new Sequelize({
+if (isDev) {
+  console.log('⚡ Conectando ao banco local (SQLite)...')
+  sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: path.join(__dirname, '..', 'database.sqlite'),
     logging: false
-})
-*/
-// const sequelize = new Sequelize(
-//     process.env.DATABASE_URL,
+  })
+} else {
+  console.log('🌐 Conectando ao banco de produção (Neon / Postgres)...')
+  
+  if (!process.env.DATABASE_URL) {
+    console.error('❌ ERRO CRÍTICO: A variável DATABASE_URL não foi informada no ambiente!')
+  }
 
-//     {
-//     dialect : 'postgres',
-//     dialectOptions: {
-//         ssl:{
-//             require: true,
-//             rejectUnauthorized: false
-//         }
-//     },
-//     logging: false
-//     }
-
-// )
-// Função para sincronizar o banco
-export async function sincronizarBD() {
-    try {
-        await sequelize.authenticate()
-        console.log('Banco conectado com sucesso!')
-
-        await sequelize.sync()
-        console.log('Banco sincronizado!')
-    } catch (error) {
-        console.error('Erro ao conectar no banco:', error)
-    }
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
+    logging: false
+  })
 }
 
-// Exportação padrão
+export async function sincronizarBD() {
+  try {
+    await sequelize.authenticate()
+    console.log('✅ Banco conectado com sucesso!')
 
-// console.log(sequelize);
-
+    // Nota: Em produção, cuidado com { force: true } ou { alter: true } se usar futuramente
+    await sequelize.sync()
+    console.log('✅ Tabelas sincronizadas com sucesso!')
+  } catch (error) {
+    console.error('❌ Erro de conexão/sincronização no banco:', error)
+  }
+}
 
 export default sequelize

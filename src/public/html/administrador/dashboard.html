@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Paroquial - Paróquia de Sant'Ana</title>
+    
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="/src/public/style/telaPrincipal.css">
+</head>
+<body>
+
+    <!-- NAVBAR SUPERIOR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <div class="logo-slot">
+                <!-- Espaço preparado para o arquivo de logo da igreja -->
+                <img src="/src/public/assets/img_santana.jpg" alt="Logo Paróquia Sant'Ana" class="church-logo">
+            </div>
+            <div class="brand-title">
+                <span class="system-name">Ecclesia</span>
+                <span class="parish-name">Paróquia de Sant'Ana</span>
+            </div>
+        </div>
+
+        <div class="topbar-search">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" placeholder="Buscar fiéis, sacramentos, pastorais ou eventos... (Ctrl + K)">
+        </div>
+
+        <div class="topbar-right">
+            <button class="icon-btn" title="Notificações">
+                <i data-lucide="bell"></i>
+                <span class="badge"></span>
+            </button>
+            
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Foto do usuário">
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Coord. Maria Silva</span>
+                    <span class="user-role">Pascom Sant'Ana</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        
+        <!-- SIDEBAR LATERAL -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="#dashboard" class="nav-item active">
+                            <i data-lucide="layout-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sacramentos" class="nav-item">
+                            <i data-lucide="book-open"></i>
+                            <span>Sacramentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#eventos" class="nav-item">
+                            <i data-lucide="calendar"></i>
+                            <span>Eventos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#fieis" class="nav-item">
+                            <i data-lucide="users"></i>
+                            <span>Fiéis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pastorais" class="nav-item">
+                            <i data-lucide="heart-handshake"></i>
+                            <span>Pastorais</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#config" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Configurações</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- BANNER DE BOAS-VINDAS -->
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Paz e Bem, Maria! 👋</h1>
+                    <p>Aqui está o resumo atualizado das atividades da Paróquia de Sant'Ana.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-secondary">
+                        <i data-lucide="calendar-plus"></i>
+                        <span>Novo Evento</span>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i data-lucide="user-plus"></i>
+                        <span>Novo Fiel</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- CARDS DE MÉTRICAS -->
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="card-header">
+                        <div class="card-icon icon-purple">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <span class="trend positive">+12% este mês</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>1.240</h2>
+                        <span class="card-label">Total de Fiéis Cadastrados</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="card-header">
+                        <div class="card-icon icon-gold">
+                            <i data-lucide="heart-handshake"></i>
+                        </div>
+                        <span class="badge-gold">100% ativas</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>12</h2>
+                        <span class="card-label">Pastorais e Movimentos</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="card-header">
+                        <div class="card-icon icon-purple-dark">
+                            <i data-lucide="calendar"></i>
+                        </div>
+                        <span class="trend neutral">Próximos 30 dias</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>8</h2>
+                        <span class="card-label">Eventos Programados</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE 2 COLUNAS: GRÁFICO E AGENDA -->
+            <section class="content-split">
+                
+                <!-- GRÁFICO -->
+                <div class="panel-card chart-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Frequência e Participação</h3>
+                            <p class="panel-subtitle">Engajamento nas celebrações e eventos da paróquia</p>
+                        </div>
+                        <select class="select-pill">
+                            <option>Últimos 6 meses</option>
+                            <option>Ano atual</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- AGENDA DA PARÓQUIA -->
+                <div class="panel-card schedule-panel">
+                    <div class="panel-header">
+                        <h3>Agenda Paroquial</h3>
+                        <a href="#eventos" class="link-more">Ver completa</a>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="date-badge">
+                                <span class="month">AGO</span>
+                                <span class="day">02</span>
+                            </div>
+                            <div class="schedule-details">
+                                <h4>Missa de Primeira Comunhão</h4>
+                                <p><i data-lucide="clock"></i> 09:00 • Igreja Matriz</p>
+                            </div>
+                            <span class="tag tag-gold">Sacramento</span>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="date-badge">
+                                <span class="month">AGO</span>
+                                <span class="day">05</span>
+                            </div>
+                            <div class="schedule-details">
+                                <h4>Reunião Geral de Agentes</h4>
+                                <p><i data-lucide="clock"></i> 19:30 • Salão Paroquial</p>
+                            </div>
+                            <span class="tag tag-purple">Pastoral</span>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="date-badge">
+                                <span class="month">AGO</span>
+                                <span class="day">10</span>
+                            </div>
+                            <div class="schedule-details">
+                                <h4>Noite do Pastel Comunitário</h4>
+                                <p><i data-lucide="clock"></i> 18:00 • Pátio Externo</p>
+                            </div>
+                            <span class="tag tag-neutral">Evento</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- SEÇÃO INFERIOR: ÚLTIMOS FIÉIS E PAINEL DE EVENTOS -->
+            <section class="content-split bottom-split">
+                
+                <!-- TABELA DE ÚLTIMOS FIÉIS -->
+                <div class="panel-card table-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Últimos Fiéis Cadastrados</h3>
+                            <p class="panel-subtitle">Novos membros adicionados ao sistema paroquial</p>
+                        </div>
+                        <a href="#fieis" class="btn btn-sm btn-secondary">Ver Todos</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Pastoral</th>
+                                    <th>Telefone</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="user-cell">
+                                        <div class="mini-avatar">JS</div>
+                                        <div>
+                                            <strong>João Souza</strong>
+                                            <small>joao.souza@email.com</small>
+                                        </div>
+                                    </td>
+                                    <td>Pastoral da Família</td>
+                                    <td>(84) 98822-1100</td>
+                                    <td><span class="status-pill active">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="user-cell">
+                                        <div class="mini-avatar">CL</div>
+                                        <div>
+                                            <strong>Camila Lima</strong>
+                                            <small>camila.lima@email.com</small>
+                                        </div>
+                                    </td>
+                                    <td>Pascom</td>
+                                    <td>(84) 99123-4455</td>
+                                    <td><span class="status-pill active">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="user-cell">
+                                        <div class="mini-avatar">RA</div>
+                                        <div>
+                                            <strong>Rafael Alves</strong>
+                                            <small>rafael.alves@email.com</small>
+                                        </div>
+                                    </td>
+                                    <td>Liturgia</td>
+                                    <td>(84) 98711-2233</td>
+                                    <td><span class="status-pill pending">Pendente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PAINEL DE DESTAQUES DOS PRÓXIMOS EVENTOS -->
+                <div class="panel-card highlight-panel">
+                    <div class="panel-header">
+                        <h3>Destaque da Semana</h3>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-banner">
+                            <span class="banner-badge"><i data-lucide="sparkles"></i> Festa Padroeira</span>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>Festa de Sant'Ana 2026</h4>
+                            <p>Preparativos para a novena e quermesse de encerramento do ciclo festivo.</p>
+                            <div class="meta-info">
+                                <div><i data-lucide="calendar"></i> 20 a 26 de Julho</div>
+                                <div><i data-lucide="map-pin"></i> Praça da Matriz</div>
+                            </div>
+                            <button class="btn btn-gold btn-block">Gerenciar Equipes de Apoio</button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- SCRIPT DE INICIALIZAÇÃO -->
+    <script>
+        // Ícones Lucide
+        lucide.createIcons();
+
+        // Gráfico Chart.js com Estilo Minimalista Roxo & Dourado
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        
+        const gradientPurple = ctx.createLinearGradient(0, 0, 0, 300);
+        gradientPurple.addColorStop(0, 'rgba(142, 124, 195, 0.35)');
+        gradientPurple.addColorStop(1, 'rgba(142, 124, 195, 0.0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Participantes',
+                    data: [420, 580, 710, 890, 1050, 1240],
+                    borderColor: '#8e7cc3',
+                    borderWidth: 3,
+                    backgroundColor: gradientPurple,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#d4af37',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#888599', font: { family: 'Inter', size: 12 } }
+                    },
+                    y: {
+                        grid: { color: '#f0eff4' },
+                        ticks: { color: '#888599', font: { family: 'Inter', size: 12 } }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
