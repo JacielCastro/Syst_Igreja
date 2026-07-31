@@ -13,7 +13,7 @@ import {
 const router = express.Router();
 
 // Rota de Cadastro: Quando houver um POST na URL /usuario, executa a função cadastrarUsuario
-router.post('/usuario', cadastrarUsuario);
+router.post('/usuario', cadastrarAdm);
 
 // Rota de Login: Quando houver um POST na URL /login, executa o loginUsuario
 router.post('/login', loginUsuario);
