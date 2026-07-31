@@ -3,7 +3,7 @@ import path from 'path'
 
 // Importamos todas as funções que acabamos de criar no arquivo do controlador
 import { 
-    cadastrarUsuario, 
+    cadastrarAdm, 
     loginUsuario, 
     listarUsuarios, 
     atualizarUsuario, 

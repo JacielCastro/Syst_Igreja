@@ -117,7 +117,7 @@ export const deletarUsuario = async (req, res) => {
     }
 };
 // --- FUNÇÃO DE CADASTRO DE ADMINISTRADOR FIXO (APENAS PARA TESTE) ---
-export const cadastrarAdm = async (req, res) => {
+/*export const cadastrarAdm = async (req, res) => {
     try {
         
         const novoAdministrador = await administrador.create({
@@ -139,3 +139,4 @@ export const cadastrarAdm = async (req, res) => {
        
     }
 };
+*/
