@@ -5,31 +5,21 @@ import app from './src/config/express_config.js'
 import path from 'path'
 import { cadastrarAdm } from './src/controllers/controllers_adm.js'
 
-let PORT = process.env.EXPRESS_PORT
-let HOST = process.env.EXPRESS_HOST
+// O Render define automaticamente a variável PORT. O fallback é 3000 para local.
+const PORT = process.env.PORT || process.env.EXPRESS_PORT || 3000
 
-if (process.env.MODE_NODE === 'dev') {
-
-    PORT = 3000
-    HOST = 'localhost'
-
-}
-
-console.log("DATABASE:", process.env.DATABASE_URL)
+console.log("DATABASE:", process.env.DATABASE_URL ? "URL Configurada" : "URL Não Encontrada")
 
 await sincronizarBD()
-cadastrarAdm()
+await cadastrarAdm()
 
-app.get('/', (req,res)=>{
-
+app.get('/', (req, res) => {
     res.sendFile(
         path.resolve('./src/public/html/administrador/login.html')
     )
-
 })
 
-app.listen(PORT, HOST, ()=>{
-
-    console.log(`Servidor em execução em: http://${HOST}:${PORT}`)
-
+// Removido o parâmetro HOST fixo para permitir conexões externas no Render
+app.listen(PORT, () => {
+    console.log(`✅ Servidor em execução na porta: ${PORT}`)
 })
