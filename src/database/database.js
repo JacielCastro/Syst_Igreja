@@ -7,12 +7,12 @@ dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
+//INSTANCIANDO O SEQUELIZE COM A CONFIGURAÇÃO DO BANCO DE DADOS
 let sequelize
 
 // Usando a variável padrão NODE_ENV ou mantendo fallback para desenvolvimento
-const isDev = process.env.NODE_ENV === 'development' || process.env.DATA_NODE === 'dev'
-
+const isDev = process.env.MODE_NODE === 'dev' || process.env.NODE_ENV === 'development'
+// Se estiver em desenvolvimento, use SQLite; caso contrário, use Postgres (Neon)
 if (isDev) {
   console.log('⚡ Conectando ao banco local (SQLite)...')
   sequelize = new Sequelize({
@@ -26,7 +26,7 @@ if (isDev) {
   if (!process.env.DATABASE_URL) {
     console.error('❌ ERRO CRÍTICO: A variável DATABASE_URL não foi informada no ambiente!')
   }
-
+  // Configuração para o Neon (Postgres) com SSL
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     dialectOptions: {
@@ -43,9 +43,7 @@ export async function sincronizarBD() {
   try {
     await sequelize.authenticate()
     console.log('✅ Banco conectado com sucesso!')
-
-    // Nota: Em produção, cuidado com { force: true } ou { alter: true } se usar futuramente
-    await sequelize.sync()
+  // 2. Cria ou ajusta as tabelas no banco com base nos Models    await sequelize.sync()
     console.log('✅ Tabelas sincronizadas com sucesso!')
   } catch (error) {
     console.error('❌ Erro de conexão/sincronização no banco:', error)

@@ -5,7 +5,7 @@ import sequelize from '../database/database.js'; // Puxa a configuração que cr
 const administrador = sequelize.define('administrador', {
     // O Sequelize cria o 'id' automaticamente
     nome: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING,// Define o tipo de dado como STRING (texto)
         allowNull: false // Não permite campo vazio
     },
     email: {

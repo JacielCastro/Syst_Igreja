@@ -19,7 +19,7 @@ router.post('/usuario', cadastrarAdm);
 router.post('/login', loginUsuario);
 
 // Rota de Listagem: Um método GET na URL /administradores traz todos os cadastros
-router.get('/adm', listarUsuarios);
+router.get('/lista', listarUsuarios);
 
 // Rota de Atualização: O ':id' indica que a URL precisa de um número (ex: PUT /usuario/3)
 router.put('/adm/:id', atualizarUsuario);
