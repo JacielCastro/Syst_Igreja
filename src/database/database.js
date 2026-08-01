@@ -17,7 +17,7 @@ if (isDev) {
   console.log('⚡ Conectando ao banco local (SQLite)...')
   sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: path.join(__dirname, '..', 'database.sqlite'),
+    storage: path.join(__dirname, '..', './database/database.sqlite'),
     logging: false
   })
 } else {
