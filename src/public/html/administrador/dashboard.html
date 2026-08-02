@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/src/public/src/administrador_script/dados_cadastro.js " defer></script>
 
     <link rel="stylesheet" href="/style/telaPrincipal.css">
 </head>
@@ -105,7 +106,7 @@
             <!-- BANNER DE BOAS-VINDAS -->
             <section class="welcome-banner">
                 <div class="welcome-text">
-                    <h1>Paz e Bem, Maria! 👋</h1>
+                    <h1>Paz de Cristo e amor de Maria! 👋</h1>
                     <p>Aqui está o resumo atualizado das atividades da Paróquia de Sant'Ana.</p>
                 </div>
                 <div class="welcome-actions">
@@ -113,7 +114,7 @@
                         <i data-lucide="calendar-plus"></i>
                         <span>Novo Evento</span>
                     </button>
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="troca_Tela()">
                         <i data-lucide="user-plus"></i>
                         <span>Novo Fiel</span>
                     </button>
