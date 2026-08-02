@@ -10,6 +10,7 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+
 // Middlewares padrões
 // PERMITINDO QUE O SERVIDOR ENTENDA DADOS ENVIADOS EM JSON (fetch, axios, etc)
 app.use(express.json()) 
