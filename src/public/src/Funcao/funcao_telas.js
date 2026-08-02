@@ -1,6 +1,7 @@
 
 export function troca_Tela() {
-    
-    window.location.href = '/src/public/html/administrador/cadastro.html';
-
+    alert('Tela de cadastro de administrador');
+    window.location.href = '/administrador/cadastro.html';
 }
+
+window.troca_Tela = troca_Tela;
