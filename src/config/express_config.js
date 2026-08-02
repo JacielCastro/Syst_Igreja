@@ -15,16 +15,18 @@ const __dirname = path.dirname(__filename)
 app.use(express.json()) 
 // Permite que o servidor entenda dados enviados através de formulários HTML tradicionais
 app.use(express.urlencoded({ extended: true }))
+//Diz ao servidor que todas as rotas configuradas dentro do routerAdm passarão a ter o prefixo /adm.
+app.use('/adm', routerAdm)
 // imprime no seu terminal relatórios coloridos de cada requisição que chega (ex: POST /adm/login 200 12.345 ms)
 app.use(morgan('dev'))
 // Configurações de pastas e Views (EJS),
-// Define a pasta /public como pública.
+// Define a pasta /src/public como pública.
 app.use(express.static(path.resolve('./src/public')))
 // Define o EJS (Embedded JavaScript) como o motor de renderização de páginas (templates HTML dinâmicos).
 app.set('view engine', 'ejs') 
 // Informa ao Express em qual pasta estão salvos os arquivos .ejs 
 app.set('views', path.join(__dirname, '../views')) 
 //Diz ao servidor que todas as rotas configuradas dentro do routerAdm passarão a ter o prefixo /adm.
-app.use('/adm', routerAdm)
+//app.use('/adm', routerAdm)
 // Exporta a configuração do aplicativo (app) para que outro arquivo possa importá-lo e ligar o servidor usando
 export default app

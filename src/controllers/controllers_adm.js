@@ -31,27 +31,34 @@ export const cadastrarAdm = async () => {
 // --- 2. FUNÇÃO DE LOGIN (AUTENTICAÇÃO) ---
 export const loginUsuario = async (req, res) => {
     try {
-        const { email, password } = req.body;
 
-        const usuario = await administrador.findOne({ where: { email } });
+        const { email, senha } = req.body;
+        const usuario = await administrador.findOne({
+            where: { email }
+        });
 
-        if (!usuario || usuario.senha !== password) {
-            return res.status(401).json({ erro: 'E-mail ou senha incorretos!' });
+        if (!usuario) {
+            console.log("Usuário não encontrado");
+            return res.status(401).json({
+                erro: "Usuário não encontrado"
+            });
+        }
+
+        if (usuario.senha !== senha) {
+            console.log("Senha incorreta");
+            return res.status(401).json({
+                erro: "Senha incorreta"
+            });
         }
 
         return res.status(200).json({
-            mensagem: 'Login realizado com sucesso!',
-            usuario: {
-                nome: usuario.nome,
-                nivel: usuario.nivelAcesso
-            }
+            mensagem: "Login realizado com sucesso!"
         });
 
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ erro: 'Erro interno ao realizar o login.' });
     }
-};
+}
 
 // --- 3. FUNÇÃO DE LISTAR USUÁRIOS (READ) ---
 export const listarUsuarios = async (req, res) => {
