@@ -31,6 +31,32 @@ body{
     border-top: 6px solid #8e7cc3;
 }
 
+/* BOTÃO VOLTAR - CANTO SUPERIOR DA TELA */
+#voltar_btn {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    
+    padding: 10px 20px;
+    border: 2px solid #8e7cc3;
+    border-radius: 12px;
+    background-color: #fdfcff;
+    color: #716199;
+    
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(110, 89, 165, 0.08);
+    z-index: 1000;
+}
+
+#voltar_btn:hover {
+    background-color: #8e7cc3;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
 /* TÍTULO PRINCIPAL */
 .cadastro-container h1{
     color: #4a3b6e;
