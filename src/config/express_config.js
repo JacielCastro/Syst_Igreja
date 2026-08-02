@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 // Configurações de pastas e Views (EJS),
 // Define a pasta /public como pública.
-app.use(express.static(path.resolve('./public')))
+app.use(express.static(path.resolve('./src/public')))
 // Define o EJS (Embedded JavaScript) como o motor de renderização de páginas (templates HTML dinâmicos).
 app.set('view engine', 'ejs') 
 // Informa ao Express em qual pasta estão salvos os arquivos .ejs 
