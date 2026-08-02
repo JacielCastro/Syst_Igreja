@@ -1,5 +1,5 @@
 
-const botao = document.getElementById("btnNovoFiel");
+const botao = document.getElementById("novoFiel_btn");
 
 botao.addEventListener("click", () => {
 
