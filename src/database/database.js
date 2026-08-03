@@ -38,7 +38,7 @@ if (isDev) {
     logging: false
   })
 }
-
+// Função para sincronizar o banco de dados com os modelos definidos
 export async function sincronizarBD() {
   try {
     await sequelize.authenticate()
