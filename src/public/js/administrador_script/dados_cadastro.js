@@ -31,7 +31,7 @@ const novoUsuario = {
 
 try {
 
-    const resposta = await fetch('http://localhost:3000/cadastro', {
+    const resposta = await fetch('/adm/usuario', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -43,9 +43,9 @@ try {
 
     if (resposta.ok) {
         alert('Cadastro realizado com sucesso!');
-        console.log(dados);
+        window.location.href = '/html/administrador/dashboard.html';
     } else {
-        alert(dados.mensagem);
+        alert(dados.erro || dados.mensagem || 'Nao foi possivel concluir o cadastro.');
     }
 
 } catch (error) {

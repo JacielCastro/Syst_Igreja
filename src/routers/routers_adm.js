@@ -22,10 +22,10 @@ router.post('/login', loginUsuario);
 router.get('/lista', listarUsuarios);
 
 // Rota de Atualização: O ':id' indica que a URL precisa de um número (ex: PUT /usuario/3)
-router.put('/adm/:id', atualizarUsuario);
+router.put('/usuario/:id', atualizarUsuario);
 
 // Rota de Deleção: Um método DELETE enviado para /usuario/:id remove o usuário correspondente
-router.delete('/adm/:id', deletarUsuario);
+router.delete('/usuario/:id', deletarUsuario);
 
 // ROTA DE TESTE 
 router.get('/teste',(req, res) => {

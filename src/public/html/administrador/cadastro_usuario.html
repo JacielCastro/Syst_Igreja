@@ -3,64 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Cadastro de Agentes </title>
+    <title>Cadastro de Agentes</title>
     <link rel="stylesheet" href="/style/cadastroUsua.css">
     <script src="/js/administrador_script/dados_cadastro.js" defer></script>
     <script src="/js/funcao/funcao_volta.js" defer></script>
-
 </head>
 <body>
+    <button id="voltar_btn" type="button">Voltar</button>
 
-    <button id="voltar_btn"> Voltar </button>
+    <div class="cadastro-container">
+        <h1>Cadastro de Agentes</h1>
+        <p class="santana">Paroquia de Sant'Ana</p>
 
-    <div class="cadastro-container">  
-        <h1> Cadastro de Agentes </h1>
-        <p class="santana">Paróquia de Sant'Ana</p>
-        
-        <img src="/assets/img_santana.jpg" alt="Logo da Paróquia de Sant´Ana">
-        
+        <img src="/assets/img_santana.jpg" alt="Logo da Paroquia de Sant'Ana">
+
         <div class="cadastro">
             <form id="cadastroForm">
                 <div class="form-group">
-                    <label for="username">Nome de usuário:</label>
+                    <label for="username">Nome de usuario:</label>
                     <input type="text" id="username" name="username">
                 </div>
+
                 <div class="form-group">
                     <label for="telefone">Telefone:</label>
                     <input type="tel" id="telefone" name="telefone">
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email">
                 </div>
+
                 <div class="form-group">
-                    <label for="genero">Gênero:</label>
-                    <select name="genero" id="genero"> 
-                        <option value=""> Selecione o gênero </option>
-                        <option value="mas"> Masculino </option>
-                        <option value="fem"> Feminino </option>
-                    </select> 
+                    <label for="genero">Genero:</label>
+                    <select name="genero" id="genero">
+                        <option value="">Selecione o genero</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </select>
                 </div>
+
                 <div class="form-group">
                     <label for="pastoral">Pastoral:</label>
                     <select name="pastoral" id="pastoral">
                         <option value="">Selecione uma pastoral</option>
-                        <option value="pastoral1">Pastoral Família</option>
-                        <option value="pastoral2">Pascom</option>
-                        <option value="pastoral3">Liturgia</option>
-                        <option value="pastoral4">Pastoral da Criança</option>
-                        <option value="pastoral5">Pastoral do povo de rua</option>
-                        <option value="pastoral6">Pastoral do Dízimo</option>
+                        <option value="Pastoral da Familia">Pastoral Familia</option>
+                        <option value="Pascom">Pascom</option>
+                        <option value="Liturgia">Liturgia</option>
+                        <option value="Pastoral da Crianca">Pastoral da Crianca</option>
+                        <option value="Pastoral do povo de rua">Pastoral do povo de rua</option>
+                        <option value="Pastoral do Dizimo">Pastoral do Dizimo</option>
                     </select>
                 </div>
-            
+
                 <div class="form-group">
-                    <label for="nivel_acesso">Nível de Acesso:</label>
+                    <label for="nivel_acesso">Nivel de Acesso:</label>
                     <select name="nivel_acesso" id="nivel_acesso">
-                        <option value="">Selecione o nível de acesso</option>
-                        <option value="admin">Coordenador</option>
-                        <option value="user">Vice-coordenador</option>
-                        <option value="user">Agente</option>
+                        <option value="">Selecione o nivel de acesso</option>
+                        <option value="Coordenador">Coordenador</option>
+                        <option value="Vice-coordenador">Vice-coordenador</option>
+                        <option value="Agente">Agente</option>
                     </select>
                 </div>
 
@@ -68,6 +70,7 @@
                     <label for="password">Senha:</label>
                     <input type="password" id="password" name="password">
                 </div>
+
                 <div class="form-group">
                     <label for="password_confirm">Confirmar Senha:</label>
                     <input type="password" id="password_confirm" name="password_confirm">
@@ -75,8 +78,7 @@
 
                 <button type="submit">Cadastrar</button>
             </form>
+        </div>
     </div>
-    </div>
-
 </body>
 </html>

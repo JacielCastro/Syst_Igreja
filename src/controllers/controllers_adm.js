@@ -1,75 +1,107 @@
-// Importamos o Modelo do Administrador para conseguir interagir com a tabela do banco SQLite
 import administrador from '../model/model_adm.js';
 
-// --- 1. FUNÇÃO DE CADASTRO (CREATE) ---
-export const cadastrarAdm = async () => {
+export const cadastrarAdmPadrao = async () => {
     try {
         const email = 'jaciel100@gmail.com';
-        
-        // Verifica se já existe antes de tentar criar
         const existe = await administrador.findOne({ where: { email } });
-        
+
         if (!existe) {
             await administrador.create({
-                nome: 'jaciel', 
-                email: email, 
-                telefone: '84987827266', 
-                genero: 'masculino', 
-                pastoral: 'pastoral pascom',     
-                nivelAcesso: 'coordenador', 
+                nome: 'jaciel',
+                email,
+                telefone: '84987827266',
+                genero: 'masculino',
+                pastoral: 'Pascom',
+                nivelAcesso: 'Coordenador',
                 senha: '123456'
             });
-            console.log('✅ Administrador padrão criado com sucesso no banco!');
+            console.log('Administrador padrao criado com sucesso no banco!');
         } else {
-            console.log('ℹ️ Administrador padrão já existe no banco.');
+            console.log('Administrador padrao ja existe no banco.');
         }
     } catch (error) {
-        console.error('❌ Erro ao verificar/cadastrar adm inicial:', error);
+        console.error('Erro ao verificar/cadastrar adm inicial:', error);
     }
 };
 
-// --- 2. FUNÇÃO DE LOGIN (AUTENTICAÇÃO) ---
-export const loginUsuario = async (req, res) => {
+export const cadastrarAdm = async (req, res) => {
     try {
+        const { nome, email, telefone, genero, pastoral, nivelAcesso, senha } = req.body;
 
-        const { email, senha } = req.body;
-        const usuario = await administrador.findOne({
-            where: { email }
+        if (!nome || !email || !telefone || !genero || !pastoral || !nivelAcesso || !senha) {
+            return res.status(400).json({ erro: 'Preencha todos os campos obrigatorios.' });
+        }
+
+        const existe = await administrador.findOne({ where: { email } });
+
+        if (existe) {
+            return res.status(409).json({ erro: 'Ja existe um usuario cadastrado com este e-mail.' });
+        }
+
+        const novoAdministrador = await administrador.create({
+            nome,
+            email,
+            telefone,
+            genero,
+            pastoral,
+            nivelAcesso,
+            senha
         });
 
+        const usuario = novoAdministrador.toJSON();
+        delete usuario.senha;
+
+        return res.status(201).json({
+            mensagem: 'Usuario cadastrado com sucesso!',
+            usuario
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ erro: 'Erro ao cadastrar o usuario.' });
+    }
+};
+
+export const loginUsuario = async (req, res) => {
+    try {
+        const { email, senha } = req.body;
+
+        if (!email || !senha) {
+            return res.status(400).json({ erro: 'Informe e-mail e senha.' });
+        }
+
+        const usuario = await administrador.findOne({ where: { email } });
+
         if (!usuario) {
-            console.log("Usuário não encontrado");
-            return res.status(401).json({
-                erro: "Usuário não encontrado"
-            });
+            return res.status(401).json({ erro: 'Usuario nao encontrado.' });
         }
 
         if (usuario.senha !== senha) {
-            console.log("Senha incorreta");
-            return res.status(401).json({
-                erro: "Senha incorreta"
-            });
+            return res.status(401).json({ erro: 'Senha incorreta.' });
         }
 
         return res.status(200).json({
-            mensagem: "Login realizado com sucesso!"
+            mensagem: 'Login realizado com sucesso!',
+            usuario: {
+                id: usuario.id,
+                nome: usuario.nome,
+                email: usuario.email,
+                pastoral: usuario.pastoral,
+                nivelAcesso: usuario.nivelAcesso
+            }
         });
-
     } catch (error) {
         console.error(error);
+        return res.status(500).json({ erro: 'Erro ao fazer login.' });
     }
-}
+};
 
-// --- 3. FUNÇÃO DE LISTAR USUÁRIOS (READ) ---
 export const listarUsuarios = async (req, res) => {
     try {
-        // O método .findAll() busca TODOS os registros cadastrados na tabela do banco
         const usuarios = await administrador.findAll({
-            // Segurança: pedimos para o banco não trazer a coluna 'senha' na listagem
-            attributes: { exclude: ['senha'] }
+            attributes: { exclude: ['senha'] },
+            order: [['createdAt', 'DESC']]
         });
 
-        // Retorna a lista de usuarios encontrada para o frontend
         return res.status(200).json(usuarios);
     } catch (error) {
         console.error(error);
@@ -77,24 +109,38 @@ export const listarUsuarios = async (req, res) => {
     }
 };
 
-// --- 4. FUNÇÃO DE ATUALIZAR USUÁRIO (UPDATE) ---
 export const atualizarUsuario = async (req, res) => {
     try {
-        // Pegamos o ID do usuario diretamente da URL (ex: /usuario/5)
         const { id } = req.params;
-        const { nome, telefone, pastoral, nivelAcesso } = req.body;
+        const { nome, email, telefone, genero, pastoral, nivelAcesso, senha } = req.body;
 
-        // Procuramos se o usuario com aquele ID realmente existe no banco
         const usuario = await administrador.findByPk(id);
+
         if (!usuario) {
-            return res.status(404).json({ erro: 'Usuario não encontrado.' });
+            return res.status(404).json({ erro: 'Usuario nao encontrado.' });
         }
 
-        // Usamos o método .update() para atualizar as informações no SQLite
-        await administrador.update(
-            { nome, telefone, pastoral, nivelAcesso },
-            { where: { id } } // Garante que só vai atualizar o usuario com o ID específico
-        );
+        const emailEmUso = email
+            ? await administrador.findOne({ where: { email } })
+            : null;
+
+        if (emailEmUso && String(emailEmUso.id) !== String(id)) {
+            return res.status(409).json({ erro: 'Este e-mail ja esta sendo usado por outro usuario.' });
+        }
+
+        const dadosAtualizados = { nome, email, telefone, genero, pastoral, nivelAcesso };
+
+        if (senha) {
+            dadosAtualizados.senha = senha;
+        }
+
+        Object.keys(dadosAtualizados).forEach((campo) => {
+            if (dadosAtualizados[campo] === undefined || dadosAtualizados[campo] === '') {
+                delete dadosAtualizados[campo];
+            }
+        });
+
+        await administrador.update(dadosAtualizados, { where: { id } });
 
         return res.status(200).json({ mensagem: 'Dados do usuario atualizados com sucesso!' });
     } catch (error) {
@@ -103,18 +149,13 @@ export const atualizarUsuario = async (req, res) => {
     }
 };
 
-// --- 5. FUNÇÃO DE DELETAR USUÁRIO (DELETE) ---
 export const deletarUsuario = async (req, res) => {
     try {
-        // Captura o ID vindo da URL
         const { id } = req.params;
-
-        // O método .destroy() apaga o registro permanentemente do SQLite
         const deletado = await administrador.destroy({ where: { id } });
 
-        // Se o resultado for 0, significa que nenhum registro tinha aquele ID para ser deletado
         if (deletado === 0) {
-            return res.status(404).json({ erro: 'Usuario não encontrado para exclusão.' });
+            return res.status(404).json({ erro: 'Usuario nao encontrado para exclusao.' });
         }
 
         return res.status(200).json({ mensagem: 'Usuario removido do sistema com sucesso!' });
@@ -123,27 +164,3 @@ export const deletarUsuario = async (req, res) => {
         return res.status(500).json({ erro: 'Erro ao deletar o usuario.' });
     }
 };
-// --- FUNÇÃO DE CADASTRO DE ADMINISTRADOR FIXO (APENAS PARA TESTE) ---
-/*export const cadastrarAdm = async (req, res) => {
-    try {
-        
-        const novoAdministrador = await administrador.create({
-            nome: 'jaciel', 
-            email:'jaciel100@gmail.com', 
-            telefone:'84987827266', 
-            genero: 'masculino', 
-            pastoral: 'pastoral pascom',     
-            nivelAcesso:'coordenador', 
-            senha:'123456'
-        });
-
-        console.log('Administrador criado com sucesso!');
-        
-        
-    } catch (error) {
-        // Exibe o erro detalhado no terminal caso aconteça alguma falha catastrófica
-        console.error(error);
-       
-    }
-};
-*/

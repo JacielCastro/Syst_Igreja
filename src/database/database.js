@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename)
 let sequelize
 
 // Usando a variável padrão NODE_ENV ou mantendo fallback para desenvolvimento
-const isDev = process.env.MODE_NODE === 'dev' || process.env.NODE_ENV === 'development'
+const isDev = process.env.MODE_NODE === 'dev' || process.env.NODE_ENV === 'development' || !process.env.DATABASE_URL
 // Se estiver em desenvolvimento, use SQLite; caso contrário, use Postgres (Neon)
 if (isDev) {
   console.log('⚡ Conectando ao banco local (SQLite)...')

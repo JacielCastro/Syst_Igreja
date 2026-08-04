@@ -643,6 +643,38 @@ body {
 .status-pill.active { background: #e6f4ea; color: #1e8e3e; }
 .status-pill.pending { background: #fef7e0; color: #b06000; }
 
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.table-action {
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-white);
+    color: var(--purple-dark);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.table-action:hover {
+    background: var(--purple-light);
+    border-color: var(--border-hover);
+}
+
+.table-action.danger {
+    color: #a33a3a;
+}
+
+.table-action.danger:hover {
+    background: #fff0f0;
+    border-color: #f1b8b8;
+}
+
 /* Destaque do Evento */
 .highlight-card {
     background: linear-gradient(135deg, var(--purple-dark) 0%, #2f2549 100%);
