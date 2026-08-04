@@ -43,7 +43,8 @@ export async function sincronizarBD() {
   try {
     await sequelize.authenticate()
     console.log('✅ Banco conectado com sucesso!')
-  // 2. Cria ou ajusta as tabelas no banco com base nos Models    await sequelize.sync()
+    // Cria ou ajusta as tabelas no banco com base nos Models.
+    await sequelize.sync()
     console.log('✅ Tabelas sincronizadas com sucesso!')
   } catch (error) {
     console.error('❌ Erro de conexão/sincronização no banco:', error)

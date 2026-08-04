@@ -1,6 +1,5 @@
 import 'dotenv/config'
-import router from './src/routers/routers_adm.js'
-import sequelize, { sincronizarBD } from './src/database/database.js'
+import { sincronizarBD } from './src/database/database.js'
 import app from './src/config/express_config.js'
 import path from 'path'
 import { cadastrarAdm } from './src/controllers/controllers_adm.js'
@@ -19,8 +18,6 @@ app.get('/', (req, res) => {
         path.resolve('./src/public/html/administrador/login.html')
     )
 })
-
-app.use(router)
 
 // Inicializa o servidor escutando a porta do ambiente
 app.listen(PORT, () => {

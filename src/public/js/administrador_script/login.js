@@ -4,15 +4,12 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     const email = document.getElementById('userEmail').value;
     const senha = document.getElementById('password').value;
     
-    const Api_URL = 'https://syst-igreja.onrender.com'
-
     if(!email || !senha){
         alert('Por favor! Preencha todos os campos!');
         return;
     }
     try {
-        // CORRIGIDO: Adicionado /adm antes de /login
-        const response = await fetch(`${Api_URL}/adm/login`, {
+        const response = await fetch('/adm/login', {
             // forma de envio para o backend
             method: 'POST',
             //enviando em JSON PARA O backend            
